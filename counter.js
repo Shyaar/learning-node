@@ -2,11 +2,11 @@
 
 let items = ['apple', 'banana', 'orange'];
 
-let count = function(items){
+let count = ()=>{
     console.log(`There are ${items.length} items in the array.`);
 };
 
 
-count(items)
+count();
 
 module.exports = count;

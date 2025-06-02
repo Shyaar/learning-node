@@ -40,6 +40,33 @@ sayGoodbye('John');
 
 const counter = require('./counter');
 
-let items = ['apple', 'banana', 'orange'];
 
-console.log(counter.count(items));
+counter.count;
+
+//exporting multiple functions from a module is done by adding them to the `module.exports` object. For example, in the `calculator.js` file, we exported multiple functions like this: module.exports = {
+    //     add,
+    // subtract,
+    // multiply,
+    // divide,
+    // modulus
+// }; 
+// We can then import these functions in another file using the `require` function, like this:
+const calculator = require('./calculator');
+
+console.log(calculator.add(5, 3)); 
+
+console.log(calculator.subtract(5, 3)); 
+
+console.log(calculator.multiply(5, 3)); 
+
+console.log(calculator.divide(5, 3)); 
+
+console.log(calculator.modulus(5, 3));
+
+//we can also export using the module.exports object like this:
+// module.exports.adder = function(a, b) {
+//     return a + b;
+// };
+// module.exports.subtractor = function(a, b) {
+//     return a - b;
+// };etc..
