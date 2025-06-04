@@ -18,15 +18,28 @@
 // creating a server:
 // we use the `http` module in Node.js to create a server. The `http` module provides a way to create an HTTP server that can listen for incoming requests and send back responses. We can use the `createServer` method to create a server, and we can specify a callback function that will be called whenever a request is received by the server.
 
+// let http = require('http');
+
+// let server = http.createServer((req, res) => {
+//     console.log(`Request received: ${req.method} ${req.url}`);
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     res.end('Hello, World!\n');     
+// }
+// )
+
+// server.listen(3000, () => {
+//     console.log('Server is listening on port 3000');
+// });
+
+
+//streams and buffers::: a buffer is a temporary storage area in memory that holds data while it is being transferred from one place to another. In Node.js, buffers are used to handle binary data, such as images or audio files.
+
+// a buffer collects data in chuncks and stores in memory until the buffer is full or the data transfer is complete. the data is then sent for processing. {how is the data sent?::: the data sent through a stream}. A stream is a pathway for data to flow from one place to another. once data is collected from the main data source, it is passed through the stream in chuncks to the buffer and once buffer is full, it is sent again through the stream for processing and continues until all data is processed and presented to the user/client
+
+//Creating streams::: in node.js we can create streams using the `stream`module. the stream module allows us to create reeadable, writeable and duplex streams. the readable allows node to read to the stream, writeable to write to the stream and duplex allows both reading and writing to the stream.
+
 let http = require('http');
+let fs = require('fs');
 
-let server = http.createServer((req, res) => {
-    console.log(`Request received: ${req.method} ${req.url}`);
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello, World!\n');     
-}
-)
+let readableStream = fs.createReadStream(__dirname + './new.txt');
 
-server.listen(3000, () => {
-    console.log('Server is listening on port 3000');
-});
