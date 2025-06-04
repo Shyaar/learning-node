@@ -5,9 +5,9 @@
 //Protocols...
 
 //protocols are a set of rules that define how data is transmitted over a network. They ensure that the data is sent and received correctly, and they help to establish a connection between the client and the server. Some common protocols include HTTP, HTTPS, FTP, and SMTP.
-// BASICALLY a protocol is a set of rules that define how the server and client communicate with each other.  
+// BASICALLY a protocol is a set of rules that define how the server and client communicate with each other.
 
-//so when data is sent from a client to a server, the information is sent through a socket via a protocol called tcp. TCP breakes the data into smaller bits called packets which are then sent over the network. 
+//so when data is sent from a client to a server, the information is sent through a socket via a protocol called tcp. TCP breakes the data into smaller bits called packets which are then sent over the network.
 
 // now we use node to create a server and tell node what information to sent to clients when they make a request to the server. We can use the `http` module in Node.js to create a server that listens for incoming requests and sends back responses.
 
@@ -23,14 +23,13 @@
 // let server = http.createServer((req, res) => {
 //     console.log(`Request received: ${req.method} ${req.url}`);
 //     res.writeHead(200, { 'Content-Type': 'text/plain' });
-//     res.end('Hello, World!\n');     
+//     res.end('Hello, World!\n');
 // }
 // )
 
 // server.listen(3000, () => {
 //     console.log('Server is listening on port 3000');
 // });
-
 
 //streams and buffers::: a buffer is a temporary storage area in memory that holds data while it is being transferred from one place to another. In Node.js, buffers are used to handle binary data, such as images or audio files.
 
@@ -40,9 +39,36 @@
 
 //Creating streams::: in node.js we can create streams using the `stream`module. the stream module allows us to create reeadable, writeable and duplex streams. the readable allows node to read to the stream, writeable to write to the stream and duplex allows both reading and writing to the stream.
 
-let http = require('http');
-let fs = require('fs');
+// let http = require("http");
+let fs = require("fs");
+// let read;
 
-let readableStream = fs.createReadStream(__dirname + './new.txt');
+let written = fs.createWriteStream(__dirname + "/written.txt");
 
-my
+// readableStream.on('data',(chunck)=>{
+//     read=chunck
+// })
+
+// readableStream.on('end',()=>{
+//     written.write(read)
+//     console.log(`written successfully`)
+// })
+
+//Pipes...
+//pipes are a more easier way to stransmit data on a stream. the pipes allows us to automate data flow in the stream.
+
+// readableStream.pipe(written);
+
+let http = require("http");
+
+let server = http.createServer((req, res) => {
+  console.log(req.url);
+  
+  let readableStream = fs.createReadStream(__dirname + "/index.html", "utf8");
+  res.writeHead(200, { "Content-Type": "text/html" });
+  readableStream.pipe(res); 
+});
+
+server.listen(3000, () => {
+  console.log(`listening`);
+});
