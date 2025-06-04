@@ -36,6 +36,8 @@
 
 // a buffer collects data in chuncks and stores in memory until the buffer is full or the data transfer is complete. the data is then sent for processing. {how is the data sent?::: the data sent through a stream}. A stream is a pathway for data to flow from one place to another. once data is collected from the main data source, it is passed through the stream in chuncks to the buffer and once buffer is full, it is sent again through the stream for processing and continues until all data is processed and presented to the user/client
 
+//A BUFFER allows us to consume data even before the entire data is available. It allows us to process data in smaller chunks, which can be more efficient than processing the entire data at once. Buffers are used in many Node.js modules, such as the `fs` module for reading and writing files, and the `http` module for handling HTTP requests and responses.
+
 //Creating streams::: in node.js we can create streams using the `stream`module. the stream module allows us to create reeadable, writeable and duplex streams. the readable allows node to read to the stream, writeable to write to the stream and duplex allows both reading and writing to the stream.
 
 let http = require('http');
